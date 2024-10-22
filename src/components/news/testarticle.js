@@ -1,3 +1,5 @@
+// testing /development purpose : import in News.jsx 
+
 const articlesTest= [
     {
     "source": {

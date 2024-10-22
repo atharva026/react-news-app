@@ -3,7 +3,7 @@ import React from 'react'
 function NewsCard({article}) {
     return (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col h-full">
-            <img src={article.urlToImage ? article.urlToImage : 'https://th.bing.com/th/id/OIP.0dzPl0BUoR9sKlirIPvhBAHaEb?w=280&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7'} alt={article.title + "Article Image"} className="w-full h-48 object-cover" />
+            <img src={article.urlToImage ? article.urlToImage : 'image-not-available.jpg'} alt={article.title + "Article Image"} className="w-full h-48 object-cover" />
 
             <div className="p-4 flex flex-col justify-between flex-grow">
                 <div>

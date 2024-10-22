@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Notfound({url, title, desc}) {
+function Notfound({ url, title, desc }) {
     return (
         <div className="w-full text-center mt-4 py-8">
             <img src={url} alt={title} className="mx-auto h-56 w-auto sm:h-80" />
@@ -11,4 +11,4 @@ function Notfound({url, title, desc}) {
     )
 }
 
-export default Notfound
+export default Notfound;

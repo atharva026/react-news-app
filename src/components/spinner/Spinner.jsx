@@ -1,6 +1,6 @@
 import React from 'react'
 import './spinner.css'
-function Spinner({heightVH}) {
+function Spinner({ heightVH }) {
     return (
         <div className='flex space-x-2 justify-center items-center bg-white dark:invert' style={{ height: heightVH }}> {/* add mt-40 in className if style not needed*/}
             <span className='sr-only'>Loading...</span>
@@ -8,7 +8,7 @@ function Spinner({heightVH}) {
             <div className='h-8 w-8 bg-black rounded-full animate-bounce custom-delay-2'></div>
             <div className='h-8 w-8 bg-black rounded-full animate-bounce custom-delay-3'></div>
         </div>
-        )
+    )
 }
 
 export default Spinner;

@@ -23,11 +23,11 @@ function Newscard({ category = null }) {
             try {
                 const res = await fetch(url);
                 const data = await res.json();
-                console.log('Initial Data Fetch :>> ', data);
+                // console.log('Initial Data Fetch :>> ', data);
                 setInitialArticalLength(data.articles.length)
                 if (data.status === 'ok' && data.articles.length > 0) {
                     const filteredArticles = data.articles.filter(article =>
-                        article.title!='[Removed]' && article.description!='[Removed]' && article.url!='[Removed]' && article.urlToImage!='[Removed]'
+                        article.title != '[Removed]' && article.description != '[Removed]' && article.url != '[Removed]' && article.urlToImage != '[Removed]'
                     );
 
                     setArticles(filteredArticles);
@@ -44,7 +44,7 @@ function Newscard({ category = null }) {
                 setArticlesNotFound(true);
                 console.error('Error fetching data:', error);
             } finally {
-                setLoading(false); // Ensure loading is set to false
+                setLoading(false); // Ensures loading is set to false
             }
         };
 
@@ -52,9 +52,11 @@ function Newscard({ category = null }) {
     }, []); // Runs once on mount
 
     const fetchMoreData = async () => {
+        
         // console.log('articles.length :>> ', articles.length );
         // console.log('totalResults', totalResults)
-        if (initiallArticalLength >= totalResults) return console.log('Done'); // Stop fetching if we have all articles
+
+        if (initiallArticalLength >= totalResults) return ; // Stop fetching if we have all articles
         setLoading(true); // Set loading true when fetching more data
         const fetchUrl = `https://newsapi.org/v2/top-headlines?country=us${category ? `&category=${category}` : ''}&apiKey=${apiKey}&page=${page + 1}`;
 
@@ -62,18 +64,19 @@ function Newscard({ category = null }) {
             const res = await fetch(fetchUrl);
             const data = await res.json();
 
-            console.log('Fetched Data :>> ', data);
+            // console.log('Fetched Data :>> ', data);
+
             setInitialArticalLength(prev => prev + data.articles.length)
 
             if (data.status === 'ok' && data.articles.length > 0) {
                 const filteredArticles = data.articles.filter(article =>
-                    article.title!='[Removed]' && article.description!='[Removed]' && article.url!='[Removed]' && article.urlToImage!='[Removed]'
+                    article.title != '[Removed]' && article.description != '[Removed]' && article.url != '[Removed]' && article.urlToImage != '[Removed]'
                 );
                 setArticles(prevArticles => [...prevArticles, ...filteredArticles]);
                 setTotalResults(data.totalResults);
                 setPage(prevPage => prevPage + 1);
             } else {
-                console.log('No more articles or an issue with fetching data');
+                console.error('No more articles or an issue with fetching data');
             }
         } catch (error) {
             console.error('Error loading more articles:', error);
@@ -107,11 +110,11 @@ function Newscard({ category = null }) {
             )}
 
             {/* If Api limit exceed */}
-            {apiLimit && <Notfound url="https://cdn3d.iconscout.com/3d/premium/thumb/search-not-found-5342748-4468820.png" title='News API Limit Exceeded' desc='Sorry! Please come back after some time.' />}
+            {apiLimit && <Notfound url="api-limit.webp" title='News API Limit Exceeded' desc='Sorry! Please come back after some time.' />}
 
             {/* Not found */}
-            {articlesNotFound && <Notfound url="https://cdn-icons-png.flaticon.com/512/2748/2748558.png" title='News not found' desc='No news articles were found for your search or selection.' />}
-        
+            {articlesNotFound && <Notfound url="not-found.png" title='News not found' desc='No news articles were found for your search or selection.' />}
+
         </div>
     );
 }
