@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../spinner/Spinner';
 import Notfound from '../notfound/Notfound';
-import NewsCard from './Newscard';
+import NewsCard from './NewsCard';
 
 function Newscard({ category = null }) {
     const [articlesNotFound, setArticlesNotFound] = useState(false);
